@@ -1,14 +1,16 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-7">
+    <div class="col-md-8">
       <div class="well">
         <form class="form-horizontal">
           <fieldset>
-            <legend>New offer</legend>
+            <legend class="text-primary"><big>New offer </big><br> 
+              <small class="text-danger"><small>Fields with * are required</small></small>
+            </legend>
             <div class="form-group">
-              <label for="category" class="col-lg-2 control-label">Category</label>
+              <label for="category" class="col-lg-2 control-label">Category*</label>
               <div class="col-lg-10">
-                <select class="form-control" id="category">
+                <select class="form-control" id="category" required>
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>
@@ -18,34 +20,34 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="manufacturer" class="col-lg-2 control-label">Manufacturer</label>
+              <label for="manufacturer" class="col-lg-2 control-label">Manufacturer*</label>
               <div class="col-lg-10">
-                <input type="text" class="form-control" id="manufacturer" placeholder="Manufacturer">
+                <input type="text" class="form-control" id="manufacturer" placeholder="Manufacturer" required>
               </div>
             </div>
             <div class="form-group">
-              <label for="model" class="col-lg-2 control-label">Model</label>
+              <label for="model" class="col-lg-2 control-label">Model*</label>
               <div class="col-lg-10">
-                <input type="text" class="form-control" id="model" placeholder="Model">
+                <input type="text" class="form-control" id="model" placeholder="Model" required>
               </div>
             </div>
             <div class="form-group">
-              <label for="year" class="col-lg-2 control-label">Year</label>
+              <label for="year" class="col-lg-2 control-label">Year*</label>
               <div class="col-lg-10">
-                <input type="number" class="form-control" id="year" placeholder="Year">
+                <input type="number" class="form-control" id="year" placeholder="Year" required>
               </div>
             </div>
             <div class="form-group">
-              <label class="col-lg-2 control-label">Condition</label>
+              <label class="col-lg-2 control-label">Condition*</label>
               <div class="col-lg-10">
                 <div class="radio">
                   <label>
-                    <input type="radio" name="optionsRadios" id="conditionNew" value="new" checked=""> New
+                    <input type="radio" name="condition" id="conditionNew" value="true" checked=""> New
                   </label>
                 </div>
                 <div class="radio">
                   <label>
-                    <input type="radio" name="optionsRadios" id="conditionUsed" value="used"> Used
+                    <input type="radio" name="condition" id="conditionUsed" value="false"> Used
                   </label>
                 </div>
               </div>
@@ -53,19 +55,19 @@
             <div class="form-group">
               <label for="textArea" class="col-lg-2 control-label">Description</label>
               <div class="col-lg-10">
-                <textarea class="form-control" rows="3" id="textArea"></textarea>
+                <textarea class="form-control" rows="3" id="description"></textarea>
                 <span class="help-block">A short description</span>
               </div>
             </div>
             <div class="form-group">
-              <label for="price" class="col-lg-2 control-label">Price</label>
+              <label for="price" class="col-lg-2 control-label">Price*</label>
               <div class="col-lg-10">
-                <input type="number" class="form-control" id="price" placeholder="Price">
+                <input type="number" class="form-control" id="price" placeholder="Price" required>
               </div>
             </div>
             <div class="form-group">
               <div class="col-lg-10 col-lg-offset-2 text-right">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" id="submitOffer">Submit</button>
                 <button type="reset" class="btn btn-default">Cancel</button>
               </div>
             </div>
