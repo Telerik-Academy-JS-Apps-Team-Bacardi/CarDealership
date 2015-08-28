@@ -1,0 +1,31 @@
+<div class="container">
+	<div class="row" id="offers-container">
+		<script type="text/x-mustache-template" id="offer-thumbnail">
+			<div class="col-sm-3 col-lg-3 col-md-3">
+				<div class="thumbnail">
+					{{#imageURL}}
+					<img src="{{imageURL}}" alt="{{Manufacturer}} {{Model}}"> {{/imageURL}} {{^imageURL}}
+					<img src="http://placehold.it/320x150" alt="No image available"> {{/imageURL}}
+					<div class="caption">
+						<h4 class="pull-right">${{Price}}</h4>
+						<h4><a href="#">{{Manufacturer}} {{Model}}</a></h4> {{#Description}}
+						<p>{{Description}}</p>
+						{{/Description}} {{^Description}}
+						<p>No description available</p>
+						{{/Description}}
+					</div>
+					<div class="ratings">
+						<p class="pull-right">15 reviews</p>
+						<p>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+						</p>
+					</div>
+				</div>
+			</div>
+		</script>
+	</div>
+</div>

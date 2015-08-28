@@ -20,6 +20,15 @@ var app = Sammy('#viewContainer', function () {
 				newOfferCtrl.addOffer();
 			});
 	});
+	
+	this.get('#/offers/:category', function () {
+		var category = this.params['category'].substring(1);
+		
+		this.partial('views/offers.html')
+			.then(function() {
+				offersCtrl.render(category);
+			});
+	});
 
 	this.get('#/offer/:id', function () {
 		alert('Watching offer details for offer with id: ' + this.params['id']);
