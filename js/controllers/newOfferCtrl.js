@@ -1,6 +1,6 @@
-var addOffer = (function () {
+var newOfferCtrl = (function () {
 	return {
-		add: function () {
+		addOffer: function () {
 			Parse.initialize("BxC62zFfCXJAfLxS90r6hwNSz0OIKtDlZ1sVeCCV", "Av5f9x57L6qsWpxohLSaXtqUD32Pblzm4dyUnYaJ");
 
 			var sendOfferButton = $('#submitOffer');
@@ -37,6 +37,7 @@ var addOffer = (function () {
 						return query.find();
 					})
 					.then(function (offers) {
+						console.log(offers);
 						offers.forEach(function (offer) {
 							console.log(offer.get('Manufacturer') + ' ' + offer.get('Model'));
 						})
