@@ -14,7 +14,8 @@ var newOfferCtrl = (function () {
 					year = $('#year').val(),
 					price = $('#price').val(),
 					description = $('#description').val(),
-					isNew = $('input[name="condition"]:checked').val();
+					isNew = $('input[name="condition"]:checked').val(),
+					image = $('#image').val();
 					
 				// convert isNew value to boolean	
 				if(isNew === 'true') {
@@ -30,18 +31,9 @@ var newOfferCtrl = (function () {
 				offer.set('Price', +price);
 				offer.set('isNew', isNew);
 				offer.set('Description', description);
+				offer.set('imageURL', image);
 
-				offer.save()
-					.then(function () {
-						var query = new Parse.Query(Offer);
-						return query.find();
-					})
-					.then(function (offers) {
-						console.log(offers);
-						offers.forEach(function (offer) {
-							console.log(offer.get('Manufacturer') + ' ' + offer.get('Model'));
-						})
-					})
+				offer.save();
 			})
 		}
 	}

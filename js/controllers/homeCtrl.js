@@ -16,7 +16,7 @@ var homeCtrl = (function () {
 						container.append(outputOfferHtml);
 					});
 				}
-			});
+			});			
 		}
 	}
 } ());
