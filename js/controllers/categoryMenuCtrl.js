@@ -17,8 +17,6 @@ var categoryMenuCtrl = (function () {
 							categories.push(offer._serverData.Category);
 						}
 					})
-					
-					console.log(container);
 
 					var outputCatMenuHtml = Mustache.render(categoryMenuTemplate, categories);
 					container.append(outputCatMenuHtml)

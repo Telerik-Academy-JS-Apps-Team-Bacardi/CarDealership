@@ -1,16 +1,32 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3" id="category-menu-container">
-            <p class="lead">BaCARdi vehicles</p>
+            <p class="lead">Categories</p>
             <script type="text/x-mustache-template" id="category-menu">
                 <div class="list-group">
                     {{#.}}
-                    <a href="#/offers/:{{.}}" class="list-group-item">{{.}}s</a> {{/.}}
+                    <a href="#/offers/:{{.}}" class="list-group-item">{{.}}</a> {{/.}}
                 </div>
             </script>
         </div>
         <div class="col-md-9">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-lg-2 pull-right">
+                        <select class="form-control" id="sortBy">
+                            <option>Newest</option>
+                            <option>Oldest</option>
+                            <option>Price ↑</option>
+                            <option>Price ↓</option>
+                            <option>Name ↑</option>
+                            <option>Name ↓</option>
+                        </select>
+                    </div>
+                    <label for="sortBy" class="col-lg-2 control-label pull-right">Sort by</label>
+                </div>
+            </div>
             <div class="row" id="offers-container">
+            </div>
                 <script type="text/x-mustache-template" id="offer-thumbnail">
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
@@ -38,7 +54,6 @@
                         </div>
                     </div>
                 </script>
-            </div>
         </div>
     </div>
 </div>

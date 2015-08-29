@@ -27,16 +27,7 @@ var app = Sammy('#viewContainer', function () {
 		
 		this.partial('views/offers.html')
 			.then(function() {
-				offersCtrl.render(9, category);
-				categoryMenuCtrl.render();
-			});
-	});
-	
-	this.get('#/offers', function () {
-		
-		this.partial('views/offers.html')
-			.then(function() {
-				offersCtrl.render(9);
+				offersCtrl.render(0, category);
 				categoryMenuCtrl.render();
 			});
 	});
