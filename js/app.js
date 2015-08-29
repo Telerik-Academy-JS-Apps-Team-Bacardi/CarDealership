@@ -9,7 +9,8 @@ var app = Sammy('#viewContainer', function () {
 	this.get('#/home', function () {
 		this.partial('views/home.html')
 			.then(function() {
-				homeCtrl.render();
+				offersCtrl.render(6);
+				categoryMenuCtrl.render();
 			});
 		
 	});
@@ -26,7 +27,17 @@ var app = Sammy('#viewContainer', function () {
 		
 		this.partial('views/offers.html')
 			.then(function() {
-				offersCtrl.render(category);
+				offersCtrl.render(9, category);
+				categoryMenuCtrl.render();
+			});
+	});
+	
+	this.get('#/offers', function () {
+		
+		this.partial('views/offers.html')
+			.then(function() {
+				offersCtrl.render(9);
+				categoryMenuCtrl.render();
 			});
 	});
 

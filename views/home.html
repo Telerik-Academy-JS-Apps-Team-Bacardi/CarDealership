@@ -1,15 +1,13 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3" id="category-menu-container">
             <p class="lead">BaCARdi vehicles</p>
-            <div class="list-group">
-                <a href="#/offers/:Car" class="list-group-item">Cars</a>
-                <a href="#/offers/:SUV" class="list-group-item">Suvs</a>
-                <a href="#/offers/:Motorcycle" class="list-group-item">Motorcycles</a>
-                <a href="#/offers/:Van" class="list-group-item">Mini/Vans</a>
-                <a href="#/offers/:Pick-up" class="list-group-item">Pick-ups</a>
-                <a href="#/offers/:Bus" class="list-group-item">Buses</a>
-            </div>
+            <script type="text/x-mustache-template" id="category-menu">
+                <div class="list-group">
+                    {{#.}}
+                    <a href="#/offers/:{{.}}" class="list-group-item">{{.}}s</a> {{/.}}
+                </div>
+            </script>
         </div>
 
         <div class="col-md-9">
@@ -46,24 +44,19 @@
             </div>
 
             <div class="row" id="offers-container">
-                
+
                 <script type="text/x-mustache-template" id="offer-thumbnail">
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
                             {{#imageURL}}
-                                <img src="{{imageURL}}" alt="{{Manufacturer}} {{Model}}">
-                            {{/imageURL}}
-                            {{^imageURL}}
-                                <img src="http://placehold.it/320x150" alt="No image available">
-                            {{/imageURL}}
+                            <img src="{{imageURL}}" alt="{{Manufacturer}} {{Model}}"> {{/imageURL}} {{^imageURL}}
+                            <img src="http://placehold.it/320x150" alt="No image available"> {{/imageURL}}
                             <div class="caption">
                                 <h4 class="pull-right">${{Price}}</h4>
-                                <h4><a href="#">{{Manufacturer}} {{Model}}</a></h4>
-                                {{#Description}} 
-                                    <p>{{Description}}</p>
-                                {{/Description}}
-                                {{^Description}} 
-                                    <p>No description available</p>
+                                <h4><a href="#">{{Manufacturer}} {{Model}}</a></h4> {{#Description}}
+                                <p>{{Description}}</p>
+                                {{/Description}} {{^Description}}
+                                <p>No description available</p>
                                 {{/Description}}
                             </div>
                             <div class="ratings">
@@ -79,7 +72,7 @@
                         </div>
                     </div>
                 </script>
-               
+
             </div>
         </div>
     </div>

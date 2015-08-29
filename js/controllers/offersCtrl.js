@@ -1,12 +1,18 @@
 var offersCtrl = (function () {
 	return {
-		render: function (category) {
-			console.log(category);
+		render: function (offersLimit, category) {
 			Parse.initialize("BxC62zFfCXJAfLxS90r6hwNSz0OIKtDlZ1sVeCCV", "Av5f9x57L6qsWpxohLSaXtqUD32Pblzm4dyUnYaJ");
 
 			var Offer = Parse.Object.extend('Offer');
 			var query = new Parse.Query(Offer);
-			query.equalTo('Category', category);
+			
+			if(category) {				
+				query.equalTo('Category', category);
+			} 
+			
+			if(offersLimit) {
+				query.limit(offersLimit)
+			}			
 
 			query.find({
 				success: function (offers) {
