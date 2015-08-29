@@ -19,6 +19,7 @@ var app = Sammy('#viewContainer', function () {
 		this.partial('views/newOffer.html')
 			.then(function() {
 				newOfferCtrl.addOffer();
+				newOfferCtrl.renderImage();
 			});
 	});
 	
