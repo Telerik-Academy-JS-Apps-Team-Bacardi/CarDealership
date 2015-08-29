@@ -15,10 +15,10 @@ var app = Sammy('#viewContainer', function () {
 		
 	});
 
-	this.get('#/newOffer', function () {
-		this.partial('views/newOffer.html')
+	this.get('#/userLogin', function () {
+		this.partial('views/userLogin.html')
 			.then(function() {
-				newOfferCtrl.addOffer();
+				addUser.add();
 			});
 	});
 	
