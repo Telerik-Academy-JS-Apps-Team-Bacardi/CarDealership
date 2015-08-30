@@ -4,13 +4,16 @@
 var addUser = ( function () {
     return {
         add: function () {
+            $('.userLoginSet').attr('tabindex','0');
+
             Parse.initialize("BxC62zFfCXJAfLxS90r6hwNSz0OIKtDlZ1sVeCCV", "Av5f9x57L6qsWpxohLSaXtqUD32Pblzm4dyUnYaJ");
+
             var currentUser = Parse.User.current();
 
 
             var PASSWORD_CONSTRAINTS = {
                 min: 3,
-                max: 12
+                max: 22
             };
 
             function validatePassword(password, passwordConfirm) {
@@ -108,7 +111,8 @@ var addUser = ( function () {
 
                         user.signUp(null, {
                             success: function (user) {
-                                console.log("USER REGISTERED")
+                                console.log("USER REGISTERED");
+                                location.reload();
                             },
                             error: function (user, error) {
                                 console.log(error);
