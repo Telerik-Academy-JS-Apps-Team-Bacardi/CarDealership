@@ -1,5 +1,5 @@
 /**
- * Created by name on 29.8.2015 ã..
+ * Created by name on 29.8.2015 Ã£..
  */
 var addUser = ( function () {
     return {
@@ -18,7 +18,7 @@ var addUser = ( function () {
                     $('#userRegisterMessages').text('Passwords do not match!!!');
                     return false;
                 }
-                if (password < PASSWORD_CONSTRAINTS.min || password > PASSWORD_CONSTRAINTS.max) {
+                if (password.length < PASSWORD_CONSTRAINTS.min || password.length > PASSWORD_CONSTRAINTS.max) {
                     $('#userRegisterMessages').text('Password is too long or too short!!!');
                     return false;
                 }
