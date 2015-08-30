@@ -18,8 +18,7 @@ var app = Sammy('#viewContainer', function () {
 	this.get('#/addOffer', function () {
 		this.partial('views/newOffer.html')
 			.then(function () {
-				newOfferCtrl.addOffer();
-				newOfferCtrl.renderImage();
+				newOfferCtrl();
 			})
 	})
 
