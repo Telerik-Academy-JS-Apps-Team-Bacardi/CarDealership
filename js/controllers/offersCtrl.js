@@ -11,7 +11,11 @@ var offersCtrl = (function () {
 			}
 
 			if (category && category != 'all') {
-				query.equalTo('Category', category);
+				if(category === 'myOffers') {					
+					query.equalTo('createdBy', Parse.User.current());
+				} else {
+					query.equalTo('Category', category);					
+				}
 			}
 
 			switch (sortBy) {
@@ -61,27 +65,33 @@ var offersCtrl = (function () {
 						offersCtrl.render(0, category, 'oldest')
 						break;
 				}
-				
+
 				return;
 			});
 
 
 			query.find({
 				success: function (offers) {
-					var offerThumbnailTemplate = $('#offer-thumbnail').html();
 					var container = $('#offers-container');
 					container.empty();
+						
+					if (offers.length > 0) {
+						var offerThumbnailTemplate = $('#offer-thumbnail').html();
+						console.log($('#offer-thumbnail'));
+						offers.forEach(function (offer) {
+							var outputOfferHtml = Mustache.render(offerThumbnailTemplate, offer);
+							container.append(outputOfferHtml);
+						});
 
-					offers.forEach(function (offer) {
-						var outputOfferHtml = Mustache.render(offerThumbnailTemplate, offer);
-						container.append(outputOfferHtml);
-					});
-					
-					$('.thumbnail').on('click', function (ev) {
-						//$(ev.target).parents('.thumbnail').find('a').trigger('click');
-						var url = $(ev.target).parents('.thumbnail').find('a').attr('href');
-						window.location.href = url;
-					})
+						$('.thumbnail').on('click', function (ev) {
+							var url = $(ev.target).parents('.thumbnail').find('a').attr('href');
+							window.location.href = url;
+						})
+					} else {
+						var noOffersAlert = $('<div/>').addClass('alert alert-dismissible alert-danger').html('There are no offers to be shown.');
+						
+						container.append(noOffersAlert);
+					}
 				}
 			});
 		}

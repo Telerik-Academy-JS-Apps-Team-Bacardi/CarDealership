@@ -13,10 +13,27 @@ var offerDetailsCtrl = (function () {
 				var container = $('#offer-container');
 
 				var outputOfferHtml = Mustache.render(offerDetailsTemplate, offer[0]._serverData);
-				console.log(outputOfferHtml);
 				container.append(outputOfferHtml);
+				
+				addDeleteButton(offer);
 			}
 		})
+	}
+
+	function addDeleteButton(offer) {
+		if (offer[0]._serverData.createdBy.id === Parse.User.current().id) {
+			var deleteBtn = $('<button/>').addClass('btn btn-danger pull-right btn-lg').html('Delete offer');
+
+			deleteBtn.on('click', function () {
+				offer[0].destroy({
+					success: function (offer) {
+						window.history.back();
+					}
+				});
+			})
+
+			$('.panel-body').append($('<hr/>')).append(deleteBtn);
+		}
 	}
 
 	return {

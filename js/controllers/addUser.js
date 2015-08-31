@@ -78,7 +78,7 @@ var addUser = ( function () {
                     Parse.User.logIn(userName, password, {
                         success: function (user) {
                             console.log('User Logged');
-                            location.reload();
+                            window.location.href = '#/home';
                             //TODO To load the add offers page
                         },
                         error: function (user, error) {

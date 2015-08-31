@@ -16,10 +16,16 @@ var app = Sammy('#viewContainer', function () {
 	});
 
 	this.get('#/addOffer', function () {
-		this.partial('views/newOffer.html')
+		var currentUser = Parse.User.current();
+		if (currentUser) {
+			this.partial('views/newOffer.html')
 			.then(function () {
 				newOfferCtrl();
 			})
+		} else {
+			window.location.href = '#/userLogin';
+		}
+		
 	})
 
 	this.get('#/userLogin', function () {
