@@ -28,6 +28,15 @@ var app = Sammy('#viewContainer', function () {
 				addUser.add();
 			});
 	});
+	
+	this.get('#/offerDetails/:id', function () {
+		var id = this.params['id'].substring(1);
+		
+		this.partial('views/offerDetails.html')
+			.then(function () {
+				offerDetailsCtrl.render(id);
+			});
+	});
 
 	this.get('#/offers/:category', function () {
 		var category = this.params['category'].substring(1);
@@ -37,10 +46,6 @@ var app = Sammy('#viewContainer', function () {
 				offersCtrl.render(0, category);
 				categoryMenuCtrl.render();
 			});
-	});
-
-	this.get('#/offer/:id', function () {
-		alert('Watching offer details for offer with id: ' + this.params['id']);
 	});
 });
 app.run('#/');

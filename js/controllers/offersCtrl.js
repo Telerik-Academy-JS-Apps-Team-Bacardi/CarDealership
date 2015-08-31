@@ -73,9 +73,15 @@ var offersCtrl = (function () {
 					container.empty();
 
 					offers.forEach(function (offer) {
-						var outputOfferHtml = Mustache.render(offerThumbnailTemplate, offer._serverData);
+						var outputOfferHtml = Mustache.render(offerThumbnailTemplate, offer);
 						container.append(outputOfferHtml);
 					});
+					
+					$('.thumbnail').on('click', function (ev) {
+						//$(ev.target).parents('.thumbnail').find('a').trigger('click');
+						var url = $(ev.target).parents('.thumbnail').find('a').attr('href');
+						window.location.href = url;
+					})
 				}
 			});
 		}

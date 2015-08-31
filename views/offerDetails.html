@@ -1,0 +1,69 @@
+<div class="container" id="offer-container">
+	<script type="text/x-mustache-template" id="offer-details">		
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Offer details</h3>
+			</div>
+			<div class="panel-body">
+				<p>
+					<div class="row">
+						<div class="col-md-6 container-fluid" id="image-container">
+							<img src="{{imageURL}}" alt="{{Manufacturer}} {{Model}}" class="img-responsive">
+						</div>
+						<div class="col-md-6" id="info-container">
+							<div class="row">
+								<div class="container-fluid">
+									<div class="row">
+										<h3>
+											<span class="col-md-5 col-md-offset-1">Manufacturer:</span>
+											<span class="col-md-3">{{Manufacturer}}</span>
+										</h3>
+									</div>
+									<div class="row">
+										<h3>
+											<span class="col-md-5 col-md-offset-1">Model:</span>
+											<span class="col-md-3">{{Model}}</span>
+										</h3>
+									</div>
+									<div class="row">
+										<h3>
+											<span class="col-md-5 col-md-offset-1">Category:</span>
+											<span class="col-md-3">{{Category}}</span>
+										</h3>
+									</div>
+									<div class="row">
+										<h3>
+											<span class="col-md-5 col-md-offset-1">Condition:</span>
+											{{#isNew}}
+												<span class="col-md-3">New</span>
+											{{/isNew}}
+											{{^isNew}}
+												<span class="col-md-3">Old</span>
+											{{/isNew}}
+											
+										</h3>
+									</div>
+									<div class="row">
+										<h3>
+											<span class="col-md-5 col-md-offset-1">Year:</span>
+											<span class="col-md-3">{{Year}}</span>
+										</h3>
+									</div>
+									<div class="row">
+										<h3>
+											<span class="col-md-5 col-md-offset-1">Price:</span>
+											<span class="col-md-3">{{Price}}</span>
+										</h3>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</p>
+				<h2>Description</h2>
+				<hr>
+				<p class="text-large">{{Description}}</p>
+			</div>
+		</div>
+	</script>
+</div>

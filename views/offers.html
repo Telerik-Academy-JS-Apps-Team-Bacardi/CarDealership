@@ -30,16 +30,21 @@
                 <script type="text/x-mustache-template" id="offer-thumbnail">
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
-                            {{#imageURL}}
-                            <img src="{{imageURL}}" alt="{{Manufacturer}} {{Model}}"> {{/imageURL}} {{^imageURL}}
-                            <img src="http://placehold.it/320x150" alt="No image available"> {{/imageURL}}
+                            {{#_serverData.imageURL}}
+                                <img src="{{_serverData.imageURL}}" alt="{{_serverData.Manufacturer}} {{_serverData.Model}}"> 
+                            {{/_serverData.imageURL}} 
+                            {{^_serverData.imageURL}}
+                                <img src="http://placehold.it/320x150" alt="No image available"> 
+                            {{/_serverData.imageURL}}
                             <div class="caption">
-                                <h4 class="pull-right">${{Price}}</h4>
-                                <h4><a href="#">{{Manufacturer}} {{Model}}</a></h4> {{#Description}}
-                                <p>{{Description}}</p>
-                                {{/Description}} {{^Description}}
-                                <p>No description available</p>
-                                {{/Description}}
+                                <h4 class="pull-right">${{_serverData.Price}}</h4>
+                                <h4><a href="#/offerDetails/:{{id}}">{{_serverData.Manufacturer}} {{_serverData.Model}}</a></h4> 
+                                {{#_serverData.Description}}
+                                    <p>{{_serverData.Description}}</p>
+                                {{/_serverData.Description}} 
+                                {{^_serverData.Description}}
+                                    <p>No description available</p>
+                                {{/_serverData.Description}}
                             </div>
                             <div class="ratings">
                                 <p class="pull-right">15 reviews</p>
