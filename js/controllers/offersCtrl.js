@@ -17,6 +17,9 @@ var offersCtrl = (function () {
 					query.equalTo('Category', category);					
 				}
 			}
+			$('#sortBy').val(sortBy);
+			var text = $("select[name=selValue] option[value="+sortBy+"]").text();
+			$('.bootstrap-select .filter-option').text(text);
 
 			switch (sortBy) {
 				case 'priceAsc':
@@ -44,27 +47,9 @@ var offersCtrl = (function () {
 
 			$('#sortBy').on('change', function () {
 				var sortBy = $('#sortBy').val();
+				localStorage.setItem('sortBy', sortBy);
+				offersCtrl.render(0, category, sortBy);
 
-				switch (sortBy) {
-					case 'Price ↑':
-						offersCtrl.render(0, category, 'priceAsc');
-						break;
-					case 'Price ↓':
-						offersCtrl.render(0, category, 'priceDesc')
-						break;
-					case 'Name ↑':
-						offersCtrl.render(0, category, 'nameAsc')
-						break;
-					case 'Name ↓':
-						offersCtrl.render(0, category, 'nameDesc')
-						break;
-					case 'Newest':
-						offersCtrl.render(0, category, 'newest')
-						break;
-					case 'Oldest':
-						offersCtrl.render(0, category, 'oldest')
-						break;
-				}
 
 				return;
 			});

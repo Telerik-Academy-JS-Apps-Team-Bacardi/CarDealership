@@ -49,7 +49,11 @@ var app = Sammy('#viewContainer', function () {
 
 		this.partial('views/offers.html')
 			.then(function () {
-				offersCtrl.render(0, category);
+				var sortBy = 'newest';
+				if(localStorage.getItem('sortBy') !== null){
+					var sortBy = localStorage.getItem('sortBy');
+				}
+				offersCtrl.render(0, category, sortBy);
 				categoryMenuCtrl.render();
 			});
 	});
