@@ -5,41 +5,66 @@
                 <form class="form-horizontal">
                     <fieldset>
                         <legend>New user? Register here!</legend>
-                        Your first name <br>
-                        <input type="text" id="userFirstName" class="userLoginSet">
+                        <small class="text-danger">
+                            <small>Fields with * are required</small>
+                        </small>
                         <br>
-                        Your Last name
-                        <br>
-                        <input type="text" id="userLastName" class="userLoginSet">
-                        <br>
-                        Your Email address
-                        <br>
-                        <input type="text" id="userEmailAddress" class="userLoginSet">
-                        <br>
-                        Your user name <br>
-                        <input type="text" id="userUsername" class="userLoginSet">
-                        <br>
-                        Your password <br>
-                        <input type="password" id="userPassword" class="userLoginSet">
-                        <br>
-                        Confirm Password <br>
-                        <input type="password" id="userPasswordConfirm" class="userLoginSet">
-                        <br>
-                        <button id="registerUser">Register</button>
+
+                        <div class="form-group has-error">
+                            <label for="userFirstName" class="col-lg-2 control-label">First name*</label>
+
+                            <div class="col-lg-10">
+                                <input type="text" id="userFirstName" class="userLoginSet form-control">
+                            </div>
+                        </div>
+                        <div class="form-group has-error">
+                            <label for="userLastName" class="col-lg-2 control-label">Last name*</label>
+
+                            <div class="col-lg-10">
+                                <input type="text" id="userLastName" class="userLoginSet form-control">
+                            </div>
+                        </div>
+                        <div class="form-group has-error">
+                            <label for="userEmailAddress" class="col-lg-2 control-label">Email*</label>
+
+                            <div class="col-lg-10">
+                                <input type="text" id="userEmailAddress" class="userLoginSet form-control">
+                            </div>
+                        </div>
+                        <div class="form-group has-error">
+                            <label for="userUsername" class="col-lg-2 control-label">Username*</label>
+
+                            <div class="col-lg-10">
+                                <input type="text" id="userUsername" class="userLoginSet">
+                            </div>
+                        </div>
+                        <div class="form-group has-error">
+                            <label for="userPassword" class="col-lg-2 control-label">Password*</label>
+
+                            <div class="col-lg-10">
+                                <input type="password" id="userPassword" class="userLoginSet" placeholder="       3-27 characters">
+                            </div>
+                        </div>
+                        <div class="form-group has-error">
+                            <label for="userPasswordConfirm" class="control-label">Confirm password*</label>
+                                <input type="password" id="userPasswordConfirm" class="userLoginSet">
+                            </div>
+                        <button id="registerUser" class="btn btn-primary">Register</button>
                         <br>
                         <br>
                         <div id="userRegisterMessages"></div>
-                    <legend>Alerady a member? Sign up here!</legend>
-                    Your username <br>
-                    <input type="text" id="userName" class="userLoginSet">
-                    <br>
-                    Your password
-                    <br>
-                    <input type="password" id="loginPassword" class="userLoginSet">
-                    <br>
-                    <button id="login">Login</button>
+                        <legend>Alerady a member? Sign up here!</legend>
+                        <label for="userName">Your username</label>
+                        <br>
+                        <input type="text" id="userName" class="userLoginSet">
+                        <br>
+                        <label for="loginPassword">Your password</label>
+                        <br>
+                        <input type="password" id="loginPassword" class="userLoginSet">
+                        <br>
+                        <button id="login" class="btn btn-primary">Login</button>
 
-                    <div id="userMessages"></div>
+                        <div id="userMessages"></div>
                     </fieldset>
                 </form>
             </div>
