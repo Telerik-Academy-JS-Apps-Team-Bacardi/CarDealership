@@ -61,16 +61,16 @@ var offerDetailsCtrl = (function () {
 		$('#share').on('click', function () {
 			
 			FB.ui({
-				method: 'share',
-				href: window.location.href
-			}, function(response){});
-		})
-		
-		console.log(window.location.href);
-		var button = $('.fb-share-button')[0];
-		button.baseURI = window.location.href;
-		console.log(button.baseURI);
-		console.log($('.fb-share-button')[0].baseURI)
+  method: 'share_open_graph',
+  action_type: 'og.likes',
+  action_properties: JSON.stringify({
+    object:window.location.href,
+  })
+}, function(response){
+  // Debug response (optional)
+  console.log(response);
+});
+		});
 	}
 
 	return {
