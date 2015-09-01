@@ -3,34 +3,22 @@ var loginNavBar = (function () {
 
     Parse.initialize("BxC62zFfCXJAfLxS90r6hwNSz0OIKtDlZ1sVeCCV", "Av5f9x57L6qsWpxohLSaXtqUD32Pblzm4dyUnYaJ");
 
-    var addedUser = Parse.User.current();
-    if (!addedUser) {
-        var liUserName = $('<li>');
-        liUserName.css('float', 'left');
-        liUserName.css('padding', '15px');
-        liUserName.css('margin-left', '100px');
-        liUserName.css('width', '100px');
-        liUserName.css('height', '30px');
-        liUserName.append('<input type="text" placeholder="UserName" id="userNameNavBar">');
-        $('.navbar-nav').append(liUserName);
+    var currentUser = Parse.User.current();
 
-        var liPassword = $('<li>');
-        liPassword.css('float', 'left');
-        liPassword.css('padding', '15px');
-        liPassword.css('margin-left', '80px');
-        liPassword.css('width', '100px');
-        liPassword.css('height', '30px');
-        liPassword.append('<input type="password" placeholder="password" id="passwordNavBar">');
-        $('.navbar-nav').append(liPassword);
+    if (!currentUser) {
+        var form = $('<form/>').addClass('navbar-form navbar-right').attr('role', 'login');
 
-        var liButton = $('<li>');
-        liButton.css('float', 'left');
-        liButton.css('padding', '15px');
-        liButton.css('margin-left', '80px');
-        liButton.css('width', '100px');
-        liButton.css('height', '30px');
-        liButton.append('<button id="buttonLoginNavBar">Login</button>');
-        $('.navbar-nav').append(liButton);
+        var inputUserNameContainer = $('<div/>').addClass('form-group navbar-login');
+        inputUserNameContainer.append('<input type="text" class="form-control" placeholder="UserName" id="userNameNavBar">');
+        form.append(inputUserNameContainer);
+
+        var inputPasswordContainer = $('<div/>').addClass('form-group navbar-login');
+        inputPasswordContainer.append('<input type="password" class="form-control" placeholder="password" id="passwordNavBar">');
+        form.append(inputPasswordContainer);
+
+        form.append('<button id="buttonLoginNavBar" class="btn btn-default">Login</button>');
+
+        $('#bs-example-navbar-collapse-1').append(form);
 
         $('#buttonLoginNavBar').on('click', function () {
             var userName = $('#userNameNavBar').val(),
@@ -47,7 +35,24 @@ var loginNavBar = (function () {
                 }
             });
         })
+    } else {       
+        var logoutBtn = $('<button/>').addClass('btn btn-default navbar-btn navbar-right').html('Logout');
+        
+        $('#bs-example-navbar-collapse-1').append(logoutBtn);
+        
+        var ul = $('<ul/>').addClass('nav navbar-nav navbar-right');
+        var li = $('<li/>').addClass('navbar-text').html('You are logged in as ');
+        
+        var userName = $('<strong/>').html(currentUser.get('username'));
+        li.append(userName);
+        ul.append(li);
 
+        $('#bs-example-navbar-collapse-1').append(ul);
 
+        logoutBtn.on('click', function () {
+            Parse.User.logOut()
+            console.log('logged out');
+            location.reload();
+        });
     }
-}());
+} ());

@@ -10,7 +10,6 @@ var addUser = ( function () {
 
             var currentUser = Parse.User.current();
 
-
             var PASSWORD_CONSTRAINTS = {
                 min: 3,
                 max: 22
@@ -46,49 +45,17 @@ var addUser = ( function () {
             if (currentUser) {
                 //Check if user is already looged
                 var currentUser = currentUser.get("username"),
-                    logOutButton =$('<button>').text('Log Out'),
-                    divLogOut = $('<div>');
-
-                console.log('User already logged');
-                $('#userLoginContainer').html('You are already logged in as ' + currentUser + '!If you want to logout, press the button at the right corner!');
-                divLogOut.append(logOutButton);
-                $('#userLoginContainer').append(divLogOut);
-
-                logOutButton.on('click',function (){
-                    Parse.User.logOut()
-                    console.log('logged out');
-                    location.reload();
-                });
-
-
-                //TODO To load the add offers page
+                    loggedInAlert = $('<div/>').addClass('alert alert-info').html('You are already logged in as <strong>' + currentUser  +  '</strong>. If you want to log out press the button in the upper right corner!');
+                
+                $('#userLoginContainer').empty().append(loggedInAlert);
             }
             else {
                 //Sign up or register to access the adds section!!
                 var user = new Parse.User();
-
-                var userSignUp = $('#login');
+                
                 var registerUser = $('#registerUser');
-
-//Sign Up existing user
-                userSignUp.on('click', function () {
-                    var userName = $('#userName').val(),
-                        password = $('#loginPassword').val();
-                    console.log(userName, password);
-                    Parse.User.logIn(userName, password, {
-                        success: function (user) {
-                            console.log('User Logged');
-                            window.location.href = '#/home';
-                            //TODO To load the add offers page
-                        },
-                        error: function (user, error) {
-                            console.log(error.message);
-                            $('#userMessages').text(error.message);
-                        }
-                    });
-
-                });
-//Register a new user
+                
+                //Register a new user
                 registerUser.on('click', function () {
                     var userName = $('#userUsername').val(),
                         password = $('#userPassword').val(),
@@ -126,4 +93,3 @@ var addUser = ( function () {
 
 
 }());
-
