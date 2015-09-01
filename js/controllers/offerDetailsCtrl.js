@@ -17,7 +17,7 @@ var offerDetailsCtrl = (function () {
 				container.append(outputOfferHtml);
 
 				renderSellerInfo(offer[0]._serverData.createdBy.id);
-				changeFbShareButtonURL();
+				handleFbShare(offer[0]._serverData);
 				addDeleteButton(offer);
 			}
 		})
@@ -57,19 +57,16 @@ var offerDetailsCtrl = (function () {
 		})
 	}
 
-	function changeFbShareButtonURL() {
+	function handleFbShare(offer) {
 		$('#share').on('click', function () {
 			
 			FB.ui({
-  method: 'share_open_graph',
-  action_type: 'og.likes',
-  action_properties: JSON.stringify({
-    object:window.location.href,
-  })
-}, function(response){
-  // Debug response (optional)
-  console.log(response);
-});
+				method: 'feed',
+				link: window.location.href,
+				name: offer.Manufacturer + ' ' + offer.Model,
+				description: offer.Description,
+				picture: offer.imageURL
+			}, function(response){});
 		});
 	}
 
