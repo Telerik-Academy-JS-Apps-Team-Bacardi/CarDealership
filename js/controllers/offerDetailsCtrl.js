@@ -62,7 +62,7 @@ var offerDetailsCtrl = (function () {
 			
 			FB.ui({
 				method: 'share',
-				href: 'http://127.0.0.1:8080/#/offerDetails/:puIu1P2PHT'
+				href: window.location.href
 			}, function(response){});
 		})
 		
