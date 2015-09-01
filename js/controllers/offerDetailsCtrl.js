@@ -11,7 +11,7 @@ var offerDetailsCtrl = (function () {
 		query.find({
 			success: function (offer) {
 				var offerDetailsTemplate = $('#offer-details').html();
-				var container = $('.panel-body');
+				var container = $('#offer-container');
 
 				var outputOfferHtml = Mustache.render(offerDetailsTemplate, offer[0]._serverData);
 				container.append(outputOfferHtml);

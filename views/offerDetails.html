@@ -1,10 +1,10 @@
 <div class="container" id="offer-container">
+	<script type="text/x-mustache-template" id="offer-details">		
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h3 class="panel-title">Offer details</h3>
 			</div>
 			<div class="panel-body">
-			<script type="text/x-mustache-template" id="offer-details">		
 				<p>
 					<div class="row">
 						<div class="col-md-6 container-fluid" id="image-container">
@@ -69,15 +69,11 @@
 				<h2>Description</h2>
 				<hr>
 				<p class="text-large">{{Description}}</p>
-				<hr>
-			<div class="fb-share-button" 
-				data-href="http://telerik-academy-js-apps-team-bacardi.github.io/CarDealership/index.html#/home" 
-				data-layout="button_count">
-			</div>				
-				<button class="btn btn-default" id="share">share</button>
-			</script>
+				<hr>			
+				<button class="btn btn-primary btn-xs" id="share">Share of Facebook</button>
 			</div>
 		</div>
+	</script>
 	<script type="text/x-mustache-template" id="seller-details">
 		<ul class="nav nav-tabs">
 			<li class="active"><a href="#username" data-toggle="tab" aria-expanded="false">Username</a></li>
