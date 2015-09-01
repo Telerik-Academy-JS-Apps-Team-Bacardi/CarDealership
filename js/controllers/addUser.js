@@ -16,6 +16,8 @@ var addUser = ( function () {
             };
 
             function validatePassword(password, passwordConfirm) {
+                password=password + '';
+                passwordConfirm=passwordConfirm + '';
                 if (password != passwordConfirm) {
                     $('#userRegisterMessages').text('Passwords do not match!!!');
                     return false;
