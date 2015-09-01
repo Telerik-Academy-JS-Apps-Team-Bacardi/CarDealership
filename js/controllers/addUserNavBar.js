@@ -11,7 +11,7 @@ var loginNavBar = (function () {
         liUserName.css('margin-left', '100px');
         liUserName.css('width', '100px');
         liUserName.css('height', '30px');
-        liUserName.append('<input type="text" placeholder="UserName" id="userNameNavBar">');
+        liUserName.append('<input type="text" placeholder="Username" id="userNameNavBar">');
         $('.navbar-nav').append(liUserName);
 
         var liPassword = $('<li>');
@@ -20,7 +20,7 @@ var loginNavBar = (function () {
         liPassword.css('margin-left', '80px');
         liPassword.css('width', '100px');
         liPassword.css('height', '30px');
-        liPassword.append('<input type="password" placeholder="password" id="passwordNavBar">');
+        liPassword.append('<input type="password" placeholder="Password" id="passwordNavBar">');
         $('.navbar-nav').append(liPassword);
 
         var liButton = $('<li>');
