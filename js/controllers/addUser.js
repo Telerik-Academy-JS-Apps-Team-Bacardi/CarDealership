@@ -89,6 +89,10 @@ var addUser = ( function () {
                         });
                     }
                 });
+                return  {
+                    validatePassword: validatePassword,
+                    validateUserNames: validateUserNames
+                }
             }
         }
     }
