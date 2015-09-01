@@ -61,10 +61,10 @@ var newOfferCtrl = (function () {
 			offer.save().then(function () {
 				$('#cancelOffer').click();
 				$('#alert-error').hide();
-				$('#alert-success').show();
+				$('#alert-success').show(500);
 			});
 		} else {
-			$('#alert-error').show();
+			$('#alert-error').show(500);
 			$('#alert-success').hide();
 		}
 	};

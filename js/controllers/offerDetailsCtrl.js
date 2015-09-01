@@ -1,4 +1,5 @@
 var offerDetailsCtrl = (function () {
+
 	function render(offerId) {
 		Parse.initialize("BxC62zFfCXJAfLxS90r6hwNSz0OIKtDlZ1sVeCCV", "Av5f9x57L6qsWpxohLSaXtqUD32Pblzm4dyUnYaJ");
 
@@ -15,6 +16,7 @@ var offerDetailsCtrl = (function () {
 				var outputOfferHtml = Mustache.render(offerDetailsTemplate, offer[0]._serverData);
 				container.append(outputOfferHtml);
 				
+				renderSellerInfo(offer[0]._serverData.createdBy.id);
 				addDeleteButton(offer);
 			}
 		})
@@ -32,8 +34,24 @@ var offerDetailsCtrl = (function () {
 				});
 			})
 
-			$('.panel-body').append($('<hr/>')).append(deleteBtn);
+			$('.panel-body').append(deleteBtn);
 		}
+	}
+
+	function renderSellerInfo(sellerId) {
+		var User = Parse.Object.extend('User');
+		var query = new Parse.Query(User);
+		
+		query.equalTo('objectId', sellerId);
+		query.find({
+			success: function (seller) {
+				var sellerDetailsTemplate = $('#seller-details').html();
+				var container = $('#seller-info');
+				
+				var outputSellerHtml = Mustache.render(sellerDetailsTemplate, seller[0]._serverData);
+				container.append(outputSellerHtml);
+			}
+		})
 	}
 
 	return {

@@ -55,6 +55,12 @@
 											<span class="col-md-3">${{Price}}</span>
 										</h3>
 									</div>
+									<div class="row">
+										<h3>
+											<span class="col-md-3 col-md-offset-1">Seller:</span>
+										</h3>
+										<div class="col-md-7" id="seller-info"></div>
+									</div>												
 								</div>
 							</div>
 						</div>
@@ -63,7 +69,33 @@
 				<h2>Description</h2>
 				<hr>
 				<p class="text-large">{{Description}}</p>
+				<hr>
+				<div class="fb-share-button" data-href="http://127.0.0.1:8080/#/offerDetails/:puIu1P2PHT" data-layout="button_count"></div>
 			</div>
+		</div>
+	</script>
+	<script type="text/x-mustache-template" id="seller-details">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#username" data-toggle="tab" aria-expanded="false">Username</a></li>
+			<li ><a href="#email" data-toggle="tab" aria-expanded="true">Email</a></li>
+			<li ><a href="#phone" data-toggle="tab" aria-expanded="true">Phone</a></li>					
+		</ul>
+		<div id="myTabContent" class="tab-content">
+			<div class="tab-pane fade active in" id="username">
+				<p class="lead">{{username}}</p>
+			</div>
+			<div class="tab-pane fade" id="email">
+				<p class="lead">{{email}}</p>
+			</div>
+			<div class="tab-pane fade" id="phone">
+				<p class="lead">
+					{{#phone}}
+						{{phone}}
+					{{/phone}}
+					{{^phone}}
+						Not available
+					{{/phone}}
+				</p>
 		</div>
 	</script>
 </div>

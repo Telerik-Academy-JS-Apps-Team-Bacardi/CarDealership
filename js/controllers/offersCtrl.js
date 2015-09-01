@@ -77,7 +77,7 @@ var offersCtrl = (function () {
 						
 					if (offers.length > 0) {
 						var offerThumbnailTemplate = $('#offer-thumbnail').html();
-						console.log($('#offer-thumbnail'));
+						
 						offers.forEach(function (offer) {
 							var outputOfferHtml = Mustache.render(offerThumbnailTemplate, offer);
 							container.append(outputOfferHtml);
