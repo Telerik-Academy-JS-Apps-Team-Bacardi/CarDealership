@@ -9,7 +9,8 @@ var app = Sammy('#viewContainer', function () {
 	this.get('#/home', function () {
 		this.partial('views/home.html')
 			.then(function () {
-				offersCtrl.render(6);
+				offersCtrl.render(3, 6);
+				offersCtrl.renderCarousel();
 				categoryMenuCtrl.render();
 			});
 
@@ -53,7 +54,7 @@ var app = Sammy('#viewContainer', function () {
 				if(localStorage.getItem('sortBy') !== null){
 					var sortBy = localStorage.getItem('sortBy');
 				}
-				offersCtrl.render(0, category, sortBy);
+				offersCtrl.render(0, 0, category, sortBy);
 				categoryMenuCtrl.render();
 			});
 	});
