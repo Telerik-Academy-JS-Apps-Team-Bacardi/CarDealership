@@ -58,8 +58,7 @@ var offerDetailsCtrl = (function () {
 	}
 
 	function handleFbShare(offer) {
-		$('#share').on('click', function () {
-			
+		$('#share').on('click', function () {			
 			FB.ui({
 				method: 'feed',
 				link: window.location.href,
