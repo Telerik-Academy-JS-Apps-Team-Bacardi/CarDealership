@@ -19,7 +19,6 @@ body {
 .carousel-control,
 .item {
     border-radius: 4px;
-    cursor: pointer;
 }
 
 .slide-image {  

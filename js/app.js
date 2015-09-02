@@ -32,7 +32,7 @@ var app = Sammy('#viewContainer', function () {
 	this.get('#/userLogin', function () {
 		this.partial('views/userLogin.html')
 			.then(function () {
-				registerUserCtrl.render();
+				addUser.add();
 			});
 	});
 	
