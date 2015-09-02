@@ -83,7 +83,7 @@ var offersCtrl = (function () {
 		});
 
 		if (loadMoreOffers) {
-			$(window).off().on('scroll', function () {
+			$(window).off('scroll').on('scroll', function () {
 				var pageHeight = $('#wrap').outerHeight();
 				var y = window.pageYOffset + window.innerHeight;
 
@@ -150,8 +150,6 @@ var offersCtrl = (function () {
 				}
 			})
 		}
-
-		return;
 	};
 
 	function renderCarousel() {
