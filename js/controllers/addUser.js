@@ -64,12 +64,11 @@ var addUser = ( function () {
                         firstName = $('#userFirstName').val(),
                         lastName = $('#userLastName').val(),
                         email = $('#userEmailAddress').val(),
-                        passwordConfirm = $('#userPasswordConfirm').val();
+                        passwordConfirm = $('#userPasswordConfirm').val(),
+                        phone = $('#userPhone').val();
 
                     var passwordIsValid = validatePassword(password, passwordConfirm);
                     var namesAreValid = validateUserNames(firstName, lastName);
-                    console.log(firstName);
-                    console.log(lastName);
 
                     if (passwordIsValid && namesAreValid) {
                         user.set("username", userName);
@@ -77,6 +76,7 @@ var addUser = ( function () {
                         user.set("firstName", firstName);
                         user.set('lastName', lastName);
                         user.set('email', email);
+                        user.set('phone', phone);
 
                         user.signUp(null, {
                             success: function (user) {
