@@ -59,14 +59,19 @@ var offerDetailsCtrl = (function () {
 
 	function handleFbShare(offer) {
 		$('#share').on('click', function () {
+			FB.ui(
+ {
+  method: 'share',
+  href: window.location.href
+}, function(response){});
 			
-			FB.ui({
-				method: 'feed',
-				link: window.location.href,
-				name: offer.Manufacturer + ' ' + offer.Model,
-				description: offer.Description,
-				picture: offer.imageURL
-			}, function(response){});
+			// FB.ui({
+			// 	method: 'feed',
+			// 	link: window.location.href,
+			// 	name: offer.Manufacturer + ' ' + offer.Model,
+			// 	description: offer.Description,
+			// 	picture: offer.imageURL
+			// }, function(response){});
 		});
 	}
 
