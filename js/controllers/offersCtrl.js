@@ -1,9 +1,10 @@
 var offersCtrl = (function () {
-	function render(skippedOffersCount, offersLimit, category, sortBy) {
+	function render(skippedOffersCount, offersLimit, category, sortBy, loadMoreOffers) {
 		Parse.initialize("BxC62zFfCXJAfLxS90r6hwNSz0OIKtDlZ1sVeCCV", "Av5f9x57L6qsWpxohLSaXtqUD32Pblzm4dyUnYaJ");
 
-		var Offer = Parse.Object.extend('Offer');
-		var query = new Parse.Query(Offer);
+		var Offer = Parse.Object.extend('Offer'),
+			query = new Parse.Query(Offer),
+			shownOffersCount = offersLimit;
 
 		if (skippedOffersCount) {
 			query.skip(skippedOffersCount);
@@ -20,7 +21,7 @@ var offersCtrl = (function () {
 				query.equalTo('Category', category);
 			}
 		}
-		
+
 		$('#sortBy').val(sortBy);
 		var text = $("select[name=selValue] option[value=" + sortBy + "]").text();
 		$('.bootstrap-select .filter-option').text(text);
@@ -52,10 +53,9 @@ var offersCtrl = (function () {
 		$('#sortBy').on('change', function () {
 			var sortBy = $('#sortBy').val();
 			localStorage.setItem('sortBy', sortBy);
-			offersCtrl.render(0, category, sortBy);
+			offersCtrl.render(0, 9, category, sortBy, true);
 			return;
 		});
-
 
 		query.find({
 			success: function (offers) {
@@ -81,30 +81,101 @@ var offersCtrl = (function () {
 				}
 			}
 		});
+
+		if (loadMoreOffers) {
+			$(window).off().on('scroll', function () {
+				var pageHeight = $('#wrap').outerHeight();
+				var y = window.pageYOffset + window.innerHeight;
+
+				if (y >= pageHeight) {
+					console.log('loading more')
+					query = new Parse.Query(Offer);
+
+					query.skip(shownOffersCount);
+					query.limit(9);
+
+					shownOffersCount += 9;
+
+					if (category && category != 'all') {
+						if (category === 'myOffers') {
+							query.equalTo('createdBy', Parse.User.current());
+						} else {
+							query.equalTo('Category', category);
+						}
+					}
+
+					switch (sortBy) {
+						case 'priceAsc':
+							query.ascending("Price");
+							break;
+						case 'priceDesc':
+							query.descending("Price");
+							break;
+						case 'nameAsc':
+							query.ascending("Name");
+							break;
+						case 'nameDesc':
+							query.descending("Name");
+							break;
+						case 'newest':
+							query.descending("createdAt");
+							break;
+						case 'oldest':
+							query.ascending("createdAt");
+							break;
+						default:
+							query.descending("createdAt");
+							break;
+					}
+
+					query.find({
+						success: function (offers) {
+							var container = $('#offers-container');
+
+							if (offers.length > 0) {
+								var offerThumbnailTemplate = $('#offer-thumbnail').html();
+
+								offers.forEach(function (offer) {
+									var outputOfferHtml = Mustache.render(offerThumbnailTemplate, offer);
+									container.append(outputOfferHtml);
+								});
+
+								$('.thumbnail').on('click', function (ev) {
+									var url = $(ev.target).parents('.thumbnail').find('a').attr('href');
+									window.location.href = url;
+								})
+							}
+						}
+					});
+				}
+			})
+		}
+
+		return;
 	};
-	
-	function renderCarousel () {
+
+	function renderCarousel() {
 		Parse.initialize("BxC62zFfCXJAfLxS90r6hwNSz0OIKtDlZ1sVeCCV", "Av5f9x57L6qsWpxohLSaXtqUD32Pblzm4dyUnYaJ");
 
 		var Offer = Parse.Object.extend('Offer');
 		var query = new Parse.Query(Offer);
-		
+
 		query.limit(3);
-		
+
 		query.find({
 			success: function (offers) {
 				var container = $('.carousel-holder'),
 					carouselTemplate = $('#carousel-template').html();
-				
+
 				var outputCarouselHtml = Mustache.render(carouselTemplate, offers);
-					
+
 				container.append(outputCarouselHtml);
-				
+
 				$('.item').on('click', function (ev) {
-						var offerId = $(ev.target).parents('.item').attr('offerId');
-						
-						window.location.href = window.location.origin + '/#/offerDetails/:' + offerId;
-					})			
+					var offerId = $(ev.target).parents('.item').attr('offerId');
+
+					window.location.href = window.location.origin + '/#/offerDetails/:' + offerId;
+				})
 			}
 		});
 	}

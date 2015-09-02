@@ -54,7 +54,7 @@ var app = Sammy('#viewContainer', function () {
 				if(localStorage.getItem('sortBy') !== null){
 					var sortBy = localStorage.getItem('sortBy');
 				}
-				offersCtrl.render(0, 0, category, sortBy);
+				offersCtrl.render(0, 9, category, sortBy, true);
 				categoryMenuCtrl.render();
 			});
 	});
