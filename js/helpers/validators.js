@@ -1,5 +1,5 @@
 var validator = (function () {
-	
+
 	function validateManufacturer() {
 		var manufacturer = $('#manufacturer');
 
@@ -11,7 +11,7 @@ var validator = (function () {
 			}
 		});
 	}
-	
+
 	function validateModel() {
 		var model = $('#model');
 
@@ -23,7 +23,7 @@ var validator = (function () {
 			}
 		});
 	}
-	
+
 	function validateYear() {
 		var year = $('#year');
 
@@ -35,7 +35,7 @@ var validator = (function () {
 			}
 		});
 	}
-	
+
 	function validatePrice() {
 		var price = $('#price');
 
@@ -47,14 +47,14 @@ var validator = (function () {
 			}
 		});
 	}
-	
+
 	function validateForm() {
 		validateManufacturer();
 		validateModel();
 		validateYear();
 		validatePrice();
 	}
-	
+
 	function validateFormForSubmit() {
 		return !(
 			$('#manufacturer').parent().parent().hasClass('has-error')
@@ -63,9 +63,38 @@ var validator = (function () {
 			|| $('#year').parent().parent().hasClass('has-error')
 			|| $('#image').parent().parent().hasClass('has-error'));
 	}
-	
+
+	function validatePassword(password, passwordConfirm) {
+		password = password + '';
+		passwordConfirm = passwordConfirm + '';
+		if (password != passwordConfirm) {
+			$('#userRegisterMessages').text('Passwords do not match!!!');
+			return false;
+		}
+		if (password.length < PASSWORD_CONSTRAINTS.min || password.length > PASSWORD_CONSTRAINTS.max) {
+			$('#userRegisterMessages').text('Password is too long or too short!!!');
+			return false;
+		}
+		return true;
+	}
+
+	function validateUserNames(firstName, lastName) {
+		if (firstName == null || lastName == null
+			|| firstName.length < 1 || lastName.length < 1) {
+			$('#userRegisterMessages').text('First name and lastname are mandatory!');
+			return false;
+		}
+		if (typeof firstName != 'string' || typeof lastName != 'string') {
+			$('#userRegisterMessages').text('First name and lastname should be text!');
+			return false;
+		}
+		return true;
+	}
+
 	return {
 		validateForm: validateForm,
-		validateFormForSubmit: validateFormForSubmit
+		validateFormForSubmit: validateFormForSubmit,
+		validatePassword: validatePassword,
+		validateUserNames: validateUserNames
 	}
 } ())
