@@ -8,11 +8,11 @@ var loginNavBar = (function () {
         var form = $('<form/>').addClass('navbar-form navbar-right').attr('role', 'login');
 
         var inputUserNameContainer = $('<div/>').addClass('form-group navbar-login');
-        inputUserNameContainer.append('<input type="text" class="form-control" placeholder="UserName" id="userNameNavBar">');
+        inputUserNameContainer.append('<input type="text" class="form-control" placeholder="Username" id="userNameNavBar">');
         form.append(inputUserNameContainer);
 
         var inputPasswordContainer = $('<div/>').addClass('form-group navbar-login');
-        inputPasswordContainer.append('<input type="password" class="form-control" placeholder="password" id="passwordNavBar">');
+        inputPasswordContainer.append('<input type="password" class="form-control" placeholder="Password" id="passwordNavBar">');
         form.append(inputPasswordContainer);
 
         form.append('<button id="buttonLoginNavBar" class="btn btn-default">Login</button>');
