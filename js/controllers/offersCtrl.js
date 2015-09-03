@@ -175,7 +175,7 @@ var offersCtrl = (function () {
 				$('.item').on('click', function (ev) {
 					var offerId = $(ev.target).parents('.item').attr('offerId');
 
-					window.location.href = window.location.origin + '/#/offerDetails/:' + offerId;
+					window.location.href = '#/offerDetails/:' + offerId;
 				})
 			}
 		});
