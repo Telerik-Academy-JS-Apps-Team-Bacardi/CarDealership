@@ -7,12 +7,7 @@ var registerUserCtrl = (function () {
 
         Parse.initialize("BxC62zFfCXJAfLxS90r6hwNSz0OIKtDlZ1sVeCCV", "Av5f9x57L6qsWpxohLSaXtqUD32Pblzm4dyUnYaJ");
 
-        var currentUser = Parse.User.current();
-
-        var PASSWORD_CONSTRAINTS = {
-            min: 3,
-            max: 22
-        };            
+        var currentUser = Parse.User.current();    
 
         //TODO The logout Stuff!!!
         if (currentUser) {
