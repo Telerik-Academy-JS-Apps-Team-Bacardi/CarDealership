@@ -43,8 +43,7 @@ body {
 }
 
 .ratings {
-    padding-right: 10px;
-    padding-left: 10px;
+    padding: 10px;
     color: #d17581;
 }
 
@@ -79,4 +78,18 @@ footer {
 
 .navbar-login {
     margin-right: 7px;
+}
+
+#numberOfRatings {
+    color: coral;
+    vertical-align: top;
+    padding-left: 7px;
+    font-size: 15px;
+}
+
+#numberOfRatingsBig {
+    color: coral;
+    vertical-align: top;
+    padding-left: 15px;
+    font-size: 26px;
 }

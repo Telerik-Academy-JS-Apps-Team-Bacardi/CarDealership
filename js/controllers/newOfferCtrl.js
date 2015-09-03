@@ -57,6 +57,8 @@ var newOfferCtrl = (function () {
 			offer.set('Description', description);
 			offer.set('imageURL', image);
 			offer.set('createdBy', Parse.User.current());
+			offer.set('Rating', 0);
+			offer.set('numberOfRatings', 0);
 
 			offer.save().then(function () {
 				$('#cancelOffer').click();
