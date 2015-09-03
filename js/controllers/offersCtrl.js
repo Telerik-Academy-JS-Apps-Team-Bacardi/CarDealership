@@ -34,10 +34,10 @@ var offersCtrl = (function () {
 				query.descending("Price");
 				break;
 			case 'nameAsc':
-				query.ascending("Name");
+				query.ascending("Manufacturer");
 				break;
 			case 'nameDesc':
-				query.descending("Name");
+				query.descending("Manufacturer");
 				break;
 			case 'newest':
 				query.descending("createdAt");
@@ -175,7 +175,7 @@ var offersCtrl = (function () {
 				$('.item').on('click', function (ev) {
 					var offerId = $(ev.target).parents('.item').attr('offerId');
 
-					window.location.href = window.location.origin + '/#/offerDetails/:' + offerId;
+					window.location.href = '#/offerDetails/:' + offerId;
 				})
 			}
 		});
