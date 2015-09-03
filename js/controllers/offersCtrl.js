@@ -80,6 +80,8 @@ var offersCtrl = (function () {
 					container.append(noOffersAlert);
 				}
 			}
+		}).then(function () {
+			$.getScript("lib/jquery.rateit.min.js");
 		});
 
 		if (loadMoreOffers) {
@@ -88,7 +90,6 @@ var offersCtrl = (function () {
 				var y = window.pageYOffset + window.innerHeight;
 
 				if (y >= pageHeight) {
-					console.log('loading more')
 					query = new Parse.Query(Offer);
 
 					query.skip(shownOffersCount);
@@ -146,6 +147,8 @@ var offersCtrl = (function () {
 								})
 							}
 						}
+					}).then(function () {
+						$.getScript("lib/jquery.rateit.min.js");
 					});
 				}
 			})

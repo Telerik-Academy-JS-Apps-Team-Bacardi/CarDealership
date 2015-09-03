@@ -20,7 +20,10 @@ var offerDetailsCtrl = (function () {
 				handleFbShare(offer[0]._serverData);
 				addDeleteButton(offer);
 			}
-		})
+		}).then(function (offer) {
+			$.getScript("lib/jquery.rateit.min.js");
+			bindRating(offer[0]);
+		});
 	}
 
 	function addDeleteButton(offer) {
@@ -58,14 +61,31 @@ var offerDetailsCtrl = (function () {
 	}
 
 	function handleFbShare(offer) {
-		$('#share').on('click', function () {			
+		$('#share').on('click', function () {
 			FB.ui({
 				method: 'feed',
 				link: window.location.href,
 				name: offer.Manufacturer + ' ' + offer.Model,
 				description: offer.Description,
 				picture: offer.imageURL
-			}, function(response){});
+			}, function (response) { });
+		});
+	}
+
+	function bindRating(offer) {
+		$('.rateit').bind('rated', function () {
+			var rating = $(this),
+				value = rating.rateit('value'),
+				currentRating = offer._serverData.Rating,
+				numberOfRatings = offer._serverData.numberOfRatings;
+		
+			currentRating = (currentRating * numberOfRatings + value) / (numberOfRatings + 1);
+			
+			offer.set('Rating', currentRating);
+			offer.set('numberOfRatings', ++numberOfRatings);
+			offer.save();			
+			
+			rating.rateit('readonly', true);
 		});
 	}
 

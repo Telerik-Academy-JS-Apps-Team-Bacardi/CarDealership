@@ -66,14 +66,9 @@
                                 {{/_serverData.Description}}
                             </div>
                             <div class="ratings">
-                                <p class="pull-right">15 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                </p>
+                                <span class="rateit" data-rateit-resetable="false" data-rateit-value="{{_serverData.Rating}}" data-rateit-ispreset="true" data-rateit-readonly="true">
+                                </span>
+                                <span id="numberOfRatings">{{_serverData.numberOfRatings}}</span>
                             </div>
                         </div>
                     </div>
