@@ -1,5 +1,9 @@
 var validator = (function () {
 
+	var PASSWORD_CONSTRAINTS = {
+		min: 3,
+		max: 22
+	};
 	function validateManufacturer() {
 		var manufacturer = $('#manufacturer');
 
