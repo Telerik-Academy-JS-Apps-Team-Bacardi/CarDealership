@@ -50,7 +50,7 @@ var offersCtrl = (function () {
 				break;
 		}
 
-		$('#sortBy').on('change', function () {
+		$('#sortBy').off().on('change', function () {
 			var sortBy = $('#sortBy').val();
 			localStorage.setItem('sortBy', sortBy);
 			offersCtrl.render(0, 9, category, sortBy, true);
