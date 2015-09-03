@@ -52,7 +52,7 @@ var registerUserCtrl = (function () {
                     user.signUp(null, {
                         success: function (user) {
                             console.log("USER REGISTERED");
-                            location.reload();
+                            location.href='/#/home';
                         },
                         error: function (user, error) {
                             console.log(error);
