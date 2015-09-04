@@ -129,7 +129,8 @@ var addUser = ( function () {
                 });
                 return  {
                     validatePassword: validatePassword,
-                    validateUserNames:validateUserNames
+                    validateUserNames:validateUserNames,
+                    validateUserEmail:validateUserEmail
 
                 }
             }

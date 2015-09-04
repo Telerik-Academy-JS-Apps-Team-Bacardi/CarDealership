@@ -28,36 +28,24 @@
     });
 
      describe('Testing email - user registration', function () {
-        // Parse.initialize("BxC62zFfCXJAfLxS90r6hwNSz0OIKtDlZ1sVeCCV", "BxC62zFfCXJAfLxS90r6hwNSz0OIKtDlZ1sVeCCV");
+         Parse.initialize("BxC62zFfCXJAfLxS90r6hwNSz0OIKtDlZ1sVeCCV", "BxC62zFfCXJAfLxS90r6hwNSz0OIKtDlZ1sVeCCV");
 
         it('expects email to have @', function () {
-           expect(addUser.add().validateUserEmail('kolio')).to.be.true; 
+           expect(addUser.add().validateUserEmail('kolio')).to.be.false;
         });
         it('expects email to have symbols between @ and the domain', function () {
-           expect(addUser.add().validateUserEmail('kolio@.bg')).to.be.true; 
+           expect(addUser.add().validateUserEmail('kolio@.bg')).to.be.false;
         });
          it('expects email to have domain', function () {
-           expect(addUser.add().validateUserEmail('kolio@gmail')).to.be.true; 
+           expect(addUser.add().validateUserEmail('kolio@gmail')).to.be.false;
         });
+         it ('expects email with valid domain and @ to pass', function (){
+             expect(addUser.add().validateUserEmail('kolio23@abv.bg')).to.be.true;
+         });
 
     });
 
-     describe('Testing email - user registration', function () {
-        // Parse.initialize("BxC62zFfCXJAfLxS90r6hwNSz0OIKtDlZ1sVeCCV", "BxC62zFfCXJAfLxS90r6hwNSz0OIKtDlZ1sVeCCV");
 
-        it('expects email to have @', function () {
-           expect(addUser.add().validateUserEmail('kolio')).to.be.true; 
-        });
-        it('expects email to have symbols between @ and the domain', function () {
-           expect(addUser.add().validateUserEmail('kolio@.bg')).to.be.true; 
-        });
-         it('expects email to have domain', function () {
-           expect(addUser.add().validateUserEmail('kolio@gmail')).to.be.true; 
-        });
-
-    });
-
-      
     describe('User sign in', function () {
         Parse.initialize("BxC62zFfCXJAfLxS90r6hwNSz0OIKtDlZ1sVeCCV", "Av5f9x57L6qsWpxohLSaXtqUD32Pblzm4dyUnYaJ");
 
