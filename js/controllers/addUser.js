@@ -47,11 +47,15 @@ var registerUserCtrl = (function () {
                     user.signUp(null, {
                         success: function (user) {
                             console.log("USER REGISTERED");
-                            document.location.hash="#/home";
                         },
                         error: function (user, error) {
                             console.log(error);
                         }
+                    }).then(function () {
+                        window.history.back();
+                        
+                    }).then(function () {
+                        location.reload(true);
                     });
                 }
             });
