@@ -37,11 +37,13 @@ var offerDetailsCtrl = (function () {
 							window.history.back();
 						}
 					});
-				})
+				});
 
 				$('.panel-body').append(deleteBtn);
 			}
+			return true;
 		}
+		return false;
 	}
 
 	function renderSellerInfo(sellerId) {
@@ -90,6 +92,7 @@ var offerDetailsCtrl = (function () {
 	}
 
 	return {
-		render: render
+		render: render,
+		addDeleteButton: addDeleteButton
 	}
-} ())
+} ());
