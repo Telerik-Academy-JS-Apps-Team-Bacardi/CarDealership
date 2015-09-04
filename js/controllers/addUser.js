@@ -1,142 +1,69 @@
 /**
  * Created by name on 29.8.2015 ã..
  */
-var addUser = ( function () {
-    return {
-        add: function () {
-            $('.userLoginSet').attr('tabindex','0');
+var registerUserCtrl = (function () {
+    function render() {
+        $('.userLoginSet').attr('tabindex', '0');
 
-            Parse.initialize("BxC62zFfCXJAfLxS90r6hwNSz0OIKtDlZ1sVeCCV", "Av5f9x57L6qsWpxohLSaXtqUD32Pblzm4dyUnYaJ");
+        Parse.initialize("BxC62zFfCXJAfLxS90r6hwNSz0OIKtDlZ1sVeCCV", "Av5f9x57L6qsWpxohLSaXtqUD32Pblzm4dyUnYaJ");
 
-            var currentUser = Parse.User.current();
+        var currentUser = Parse.User.current();    
 
+        //TODO The logout Stuff!!!
+        if (currentUser) {
+            //Check if user is already looged
+            var currentUser = currentUser.get("username"),
+                loggedInAlert = $('<div/>').addClass('alert alert-info').html('You are already logged in as <strong>' + currentUser + '</strong>. If you want to log out press the button in the upper right corner!');
 
-            var PASSWORD_CONSTRAINTS = {
-                min: 3,
-                max: 22
-            };
+            $('#userLoginContainer').empty().append(loggedInAlert);
+        }
+        else {
+            //Sign up or register to access the adds section!!
+            var user = new Parse.User();
 
-            function validatePassword(password, passwordConfirm) {
-                password=password+'';
-                passwordConfirm=passwordConfirm+'';
-                if (password != passwordConfirm) {
-                    $('#userRegisterMessages').text('Passwords do not match!!!');
-                    return false;
-                }
-                if (password.length < PASSWORD_CONSTRAINTS.min || password.length > PASSWORD_CONSTRAINTS.max) {
-                    $('#userRegisterMessages').text('Password is too long or too short!!!');
-                    return false;
-                }
-                return true;
-            }
+            var registerUser = $('#registerUser');
+                
+            //Register a new user
+            registerUser.on('click', function () {
+                var userName = $('#userUsername').val(),
+                    password = $('#userPassword').val(),
+                    firstName = $('#userFirstName').val(),
+                    lastName = $('#userLastName').val(),
+                    email = $('#userEmailAddress').val(),
+                    passwordConfirm = $('#userPasswordConfirm').val(),
+                    phone = $('#userPhone').val();
 
-            function validateUserNames(firstName, lastName) {
-                if (firstName == null || lastName == null
-                    || firstName.length < 1 || lastName.length < 1) {
-                    $('#userRegisterMessages').text('First name and lastname are mandatory!');
-                    return false;
-                }
-                if (typeof firstName != 'string' || typeof lastName != 'string') {
-                    $('#userRegisterMessages').text('First name and lastname should be text!');
-                    return false;
-                }
-                return true;
-            }
+                var passwordIsValid = validator.validatePassword(password, passwordConfirm);
+                var namesAreValid = validator.validateUserNames(firstName, lastName);
+                var emailIsValid = validator.validateUserEmail(email);
 
-            function validateUserEmail(email) {
-                var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-                return re.test(email);
-            }
-           
-            //TODO The logout Stuff!!!
-            if (currentUser) {
-                //Check if user is already looged
-                var currentUser = currentUser.get("username"),
-                    logOutButton =$('<button>').text('Log Out'),
-                    divLogOut = $('<div>');
+                if (passwordIsValid && namesAreValid && emailIsValid) {
+                    user.set("username", userName);
+                    user.set("password", password);
+                    user.set("firstName", firstName);
+                    user.set('lastName', lastName);
+                    user.set('email', email);
+                    user.set('phone', phone);
 
-                console.log('User already logged');
-                $('#userLoginContainer').html('You are already logged in as ' + currentUser + '!If you want to logout, press the button at the right corner!');
-                divLogOut.append(logOutButton);
-                $('#userLoginContainer').append(divLogOut);
-
-                logOutButton.on('click',function (){
-                    Parse.User.logOut()
-                    console.log('logged out');
-                    location.reload();
-                });
-
-
-                //TODO To load the add offers page
-            }
-            else {
-                //Sign up or register to access the adds section!!
-                var user = new Parse.User();
-
-                var userSignUp = $('#login');
-                var registerUser = $('#registerUser');
-
-//Sign Up existing user
-                userSignUp.on('click', function () {
-                    var userName = $('#userName').val(),
-                        password = $('#loginPassword').val();
-                    console.log(userName, password);
-                    Parse.User.logIn(userName, password, {
+                    user.signUp(null, {
                         success: function (user) {
-                            console.log('User Logged');
-                            window.location.href = '#/home';
-                            //TODO To load the add offers page
+                            console.log("USER REGISTERED");
                         },
                         error: function (user, error) {
-                            console.log(error.message);
-                            $('#userMessages').text(error.message);
+                            console.log(error);
                         }
+                    }).then(function () {
+                        window.history.back();
+                        
+                    }).then(function () {
+                        window.location.reload(true);
                     });
-
-                });
-//Register a new user
-                registerUser.on('click', function () {
-                    var userName = $('#userUsername').val(),
-                        password = $('#userPassword').val(),
-                        firstName = $('#userFirstName').val(),
-                        lastName = $('#userLastName').val(),
-                        email = $('#userEmailAddress').val(),
-                        passwordConfirm = $('#userPasswordConfirm').val();
-
-                    var passwordIsValid = validatePassword(password, passwordConfirm);
-                    var namesAreValid = validateUserNames(firstName, lastName);
-                    var emailAreValid = validateUserEmail(email);
-                    console.log(firstName);
-                    console.log(lastName);
-
-                    if (passwordIsValid && namesAreValid && emailAreValid) {
-                        user.set("username", userName);
-                        user.set("password", password);
-                        user.set("firstName", firstName);
-                        user.set('lastName', lastName);
-                        user.set('email', email);
-
-                        user.signUp(null, {
-                            success: function (user) {
-                                console.log("USER REGISTERED");
-                                location.reload();
-                            },
-                            error: function (user, error) {
-                                console.log(error);
-                            }
-                        });
-                    }
-                });
-                return  {
-                    validatePassword: validatePassword,
-                    validateUserNames:validateUserNames,
-                    validateUserEmail:validateUserEmail
-
                 }
-            }
+            });
         }
+    };
+
+    return {
+        render: render
     }
-
-
-}());
-
+} ());

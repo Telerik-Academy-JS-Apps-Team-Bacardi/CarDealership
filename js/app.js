@@ -10,7 +10,7 @@ var app = Sammy('#viewContainer', function () {
 		this.partial('views/home.html')
 			.then(function () {
 				offersCtrl.render(3, 6);
-				offersCtrl.renderCarousel();
+				carouselCtrl.renderCarousel();
 				categoryMenuCtrl.render();
 			});
 
