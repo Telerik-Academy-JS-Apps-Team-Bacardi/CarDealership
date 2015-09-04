@@ -55,7 +55,7 @@ var registerUserCtrl = (function () {
                         window.history.back();
                         
                     }).then(function () {
-                        location.reload(true);
+                        window.location.reload(true);
                     });
                 }
             });
