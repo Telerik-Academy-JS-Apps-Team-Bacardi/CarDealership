@@ -35,8 +35,9 @@ var registerUserCtrl = (function () {
 
                 var passwordIsValid = validator.validatePassword(password, passwordConfirm);
                 var namesAreValid = validator.validateUserNames(firstName, lastName);
+                var emailIsValid = validator.validateUserEmail(email);
 
-                if (passwordIsValid && namesAreValid) {
+                if (passwordIsValid && namesAreValid && emailIsValid) {
                     user.set("username", userName);
                     user.set("password", password);
                     user.set("firstName", firstName);
@@ -51,12 +52,13 @@ var registerUserCtrl = (function () {
                         error: function (user, error) {
                             console.log(error);
                         }
-                    }).then(function () {
-                        window.history.back();
-                        
-                    }).then(function () {
-                        window.location.reload(true);
                     });
+                    
+                    setTimeout(function () {
+                        console.log(12);
+                        window.history.back();
+                            window.location.reload(true);
+                    }, 2000);
                 }
             });
         }
