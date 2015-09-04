@@ -71,39 +71,4 @@
     });
 
 
-    describe('Manufacturer name test', function(){
-        it('expects manufacturer name not to be an empty string', function (){
-         expect(validator.validateManufacturer('')).to.be.false;
-        });
-        it('expects manufacturer name to be a valid string', function(){
-            expect(validator.validateManufacturer('Opel')).to.be.true;
-        });
-    });
-
-    describe('Model name test', function(){
-        it('expects model name not to be an empty string', function (){
-            expect(validator.validateModel('')).to.be.false;
-        });
-        it('expects model name to be a valid string', function(){
-            expect(validator.validateModel('Astra')).to.be.true;
-        });
-    });
-
-    describe('Car year test', function(){
-        it('expects car year to be a number greater than 1886', function(){
-            expect(validator.validateYear(188)).to.be.false;
-        });
-        it('expects car year to be a valid date in history', function(){
-            expect(validator.validateYear(2012)).to.be.true;
-        });
-    });
-
-    describe('Car price test', function(){
-        it('expects car price to be a valid string', function(){
-            expect(validator.validatePrice('')).to.be.false;
-        });
-        it('expects car price to be greater than zero', function(){
-            expect(validator.validatePrice(0)).to.be.false;
-        })
-    });
 }());
