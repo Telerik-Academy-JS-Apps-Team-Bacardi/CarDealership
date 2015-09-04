@@ -56,6 +56,7 @@ var registerUserCtrl = (function () {
                         window.history.back();
                         
                     }).then(function () {
+                        loginNavBar();
                         window.location.reload(true);
                     });
                 }
