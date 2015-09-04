@@ -52,13 +52,13 @@ var registerUserCtrl = (function () {
                         error: function (user, error) {
                             console.log(error);
                         }
-                    }).then(function () {
-                        window.history.back();
-                        
-                    }).then(function () {
-                        loginNavBar();
-                        window.location.reload(true);
                     });
+                    
+                    setTimeout(function () {
+                        console.log(12);
+                        window.history.back();
+                            window.location.reload(true);
+                    }, 2000);
                 }
             });
         }
