@@ -66,9 +66,35 @@
             var currentUser = Parse.User.current();
 
             expect(currentUser).to.be.null;
-        })
+        });
+
 
     });
+
+    describe('Checking adding delete button', function () {
+        it('expects to return false if no user is logged in', function () {
+            Parse.initialize("BxC62zFfCXJAfLxS90r6hwNSz0OIKtDlZ1sVeCCV", "Av5f9x57L6qsWpxohLSaXtqUD32Pblzm4dyUnYaJ");
+            var userName = Math.random();
+            var password = Math.random();
+            Parse.User.logOut();
+            Parse.User.logIn(userName, password);
+
+            expect(offerDetailsCtrl.addDeleteButton('')).to.be.false;
+
+        });
+        it('expects to return true if offer is null', function () {
+            Parse.initialize("BxC62zFfCXJAfLxS90r6hwNSz0OIKtDlZ1sVeCCV", "Av5f9x57L6qsWpxohLSaXtqUD32Pblzm4dyUnYaJ");
+            Parse.User.logIn('Nicky', '123456');
+            var currentUser = Parse.User.current();
+
+            expect(offerDetailsCtrl.addDeleteButton('')).to.be.false;
+
+        });
+
+    });
+
+
+
 
 
 }());
