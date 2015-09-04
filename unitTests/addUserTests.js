@@ -61,6 +61,7 @@
         it('expects random user not to be able to log in', function () {
             var userName = Math.random();
             var password = Math.random();
+            Parse.User.logOut();
             Parse.User.logIn(userName, password);
             var currentUser = Parse.User.current();
 
